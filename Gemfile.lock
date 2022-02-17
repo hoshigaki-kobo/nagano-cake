@@ -251,7 +251,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
-  enum_help
+  enum_help (~> 0.0.17)
   jbuilder (~> 2.7)
   jquery-rails
   kaminari (~> 1.2.1)
