@@ -1,0 +1,40 @@
+<main>
+  <div calss = "containar">
+    <div class = "row">
+      <h2>商品新規登録</h2>
+      <%= form_with model: @item, local: true do |f| %>
+        <div class="form-group">
+          <!--Active_strage:install後-->
+          <%= f.label :image %>商品画像
+          <%= f.image_field :image %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name %>商品名
+          <%= f.text_field :name %>
+        </div>
+        <div class="form-group">
+          <%= f.label :introduction %>商品説明
+          <%= f.text_area :introduction %>
+        </dev>
+        <div class="form-group">
+          <%= f.label :genre_id %>ジャンル
+          <%= f.image_field :genre_id %>
+        </dev>
+        <div class="form-group">
+          <%= f.label :tax_included %>税抜き価格
+          <%= f.image_field :tax_included %>
+        </div>
+        <div class="from-group">
+          <!--enumが正常にinstallされてないかも-->
+          <!--enum is_active: { sale: 0, stop_sale: 1 } モデルに記載-->
+          <%= f.radio_button :is_active, Item.is_actives.key(0) %>
+          <%= f.label :is_active, Item.is_actives_i18n[:sale] %>
+
+          <%= f.radio_button :is_active, Item.is_actives.key(1) %>
+          <%= f.label :is_active, Item.is_actives_i18n[:stop_sale]%>
+        </div>
+        <div class="form-group">
+          <%= f.submit "新規登録", class: "btn btn-success" %>
+        </div>
+  </div>
+</main>
