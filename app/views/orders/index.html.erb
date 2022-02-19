@@ -1,0 +1,32 @@
+<main>
+    <div calss = "containar">
+        <div class = "row">
+            <div class = "col-md-9">
+            <H2>注文履歴一覧</H2>
+                <table class='table table-hover table-inverse'>
+                <thead>
+      　         <th>
+      　             <%= @order.create_at %>注文日
+　                  <%= @shipping %>配送先
+                    <%= @order.order_items %>注文商品
+                    <%= @order.total_amount %>支払金額
+                    <%= @order.status %>ステータス
+                    <%= f.submit "表示する", class: "btn btn-success" %>注文詳細
+                </th>
+                </thead>
+                <tbody>
+                    <% @order.each do |order| %>
+                    <tr>
+                      <td><%= link_to(book.user) do %>
+                          <%= image_tag book.user.get_profile_image, size:'50x50' %>
+                          <% end %>
+                       </td>
+                        <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
+                        <td><%= book.body %></td>
+                      <td></td>
+                    </tr>
+                </tbody>
+             </div>
+        </div>
+    </div>
+</main>
