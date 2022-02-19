@@ -30,11 +30,16 @@
             <%= item.tax_included %>
           </td>
           <td>
-            <%= item.genre_id %>
+            <%= item.genre %>
           </td>
-          <td>
-            <%= item.is_active %>
-          </td>
+            <% if item.is_active == true %>
+              <td class="text-success">
+                販売中
+              </td>
+            <% else %>
+              <td class="text-secondary">
+                販売停止中
+              </td>
         </tr>
         <% end %>
        </tbody>

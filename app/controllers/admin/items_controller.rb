@@ -21,6 +21,7 @@ class Admin::ItemsController < ApplicationController
   def updete
     @item = Item.find(params[:id])
     @item.update(item_params)
+    redirect_to admin_item_path(@item)
   end
 
   def destroy
