@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 
   belongs_to :customer
   has_many :order_items, dependent: :destroy
-  has_many :cart_items, dependent: :destroy
+
 
   def shipping.address
     if select.address == "ご自身の住所"

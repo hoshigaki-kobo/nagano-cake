@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake1</title>
+    <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,44 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column m-3"><!--上から縦並び -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-info p-3">
+      <!--レスポンシブデザイン変更タイミング(lg) -->
+        <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <li class="navbar-nav">
+            <i class="nav-link text-light">NaganoCake</i>
+          </li>
+
+          <ul class="navbar-nav ml-auto">
+          <li>
+            <p class="nav-link text-light border border-light rounded">About</p>
+          </li>
+
+          <li>
+            <p class="nav-link text-light border border-light rounded">商品一覧</p>
+          </li>
+
+          <li>
+            <p class="nav-link text-light border border-light rounded">新規登録</p>
+          </li>
+
+          <li>
+            <p class="nav-link text-light border border-light rounded">ログイン</p>
+          </li>
+
+          </ul>
+        </div>
+      </div>
+      </nav>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+
+    <footer>
+
+    </footer>
   </body>
 </html>
