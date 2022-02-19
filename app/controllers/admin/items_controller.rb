@@ -6,7 +6,8 @@ class Admin::ItemsController < ApplicationController
 
   def cerate
     @item = Item.new(item_params)
-
+    @item.save
+    redirect_to admin_items_path
   end
 
   def show
@@ -14,7 +15,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def updete
@@ -28,6 +29,6 @@ class Admin::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name,:introduction,:genre_id,:tax_included,:is_active)
+    params.require(:item).permit(:name,:introduction,:genre_id,:tax_included,:is_active,:item_image)
   end
 end

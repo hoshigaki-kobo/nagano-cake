@@ -1,0 +1,14 @@
+<main>
+  <div class ="containar">
+    <div class ="row">
+      <h3>商品詳細</h3>
+      <%= image_tag @item.get_item_image("100x100") %>
+      <%= @item.name %>
+      <%= @item.introduction %>
+      <%= @item.genre_id %>
+      <%= @item.tax_included %>
+      <%= @item.is_active %>
+    </div>
+  </div>
+</main>
+
