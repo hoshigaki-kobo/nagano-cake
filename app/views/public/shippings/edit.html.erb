@@ -3,6 +3,28 @@
     <h2>配送先編集</h2>
   </div>
   <div class="row">
-    <%= render "public/shippings/form", {shipping: @shipping, "新規登録" => "変更内容を保存"} %>
+    <table class="table table-borderless table-sm">
+      <%= form_with model: @shipping, local: true, method: :pacth do |f| %>
+      <tr>
+        <th><%= f.label :zip_code,"郵便番号(ハイフンなし)" %></th>
+        <td class = "col-7">
+          <%= f.text_field :zip_code, class: "form-control", placeholder: "0000000" %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :address,"住所" %></th>
+        <td class = "col-7">
+          <%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木00-00-00" %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :name, "宛名" %></th>
+        <td class = "col-7">
+          <%= f.text_field :name, class: "form-control", placeholder: "スイーツ 好子" %>
+        </td>
+        <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
