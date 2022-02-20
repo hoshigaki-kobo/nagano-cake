@@ -1,0 +1,59 @@
+<h2>ショッピングカート</h2>
+
+<p class="btn btn-emergency">[カートを空にする]</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cart_items = CartItem.all %>
+          <% cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                [画像]
+                <%= cart_item.item.name %>
+              </td>
+              <td><%= cart_item.item.tax_included %></td>
+              <td>
+                <%= cart_item.quantity %>
+                <%= link_to "変更する", root_path, class:"btn btn-succsess" %></td>
+              <td><%= cart_item.item.tax_included * cart_item.quantity %></td>
+              <td>
+                <%#= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success" %>
+                [削除する]
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <span class="btn btn-primary">[買い物を続ける]</span>
+
+    <table class="table">
+      <th>合計金額</th>
+      <td></td>
+    </table>
+
+    </div>
+  </div>
+
+  <%#= form_with model:[:admin, @genre], local:true do |f| %>
+    <%#= f.label :"ジャンル名" %>
+    <%#= f.text_field :name, class: 'form-control' %>
+    <%#= f.text_field :name %>
+    <%#= f.submit "新規登録" %>
+  <%# end %>
+
+  [情報入力に進む]
+
+</div>
