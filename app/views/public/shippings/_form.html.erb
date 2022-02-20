@@ -1,0 +1,17 @@
+<table class="table table-borderless">
+  <%= form_with model: shipping, local: true do |shipping| %>
+  <tr>
+    <th><%= f.label :zip_code,"郵便番号(ハイフンなし)" %></th>
+    <td><%= f.text_field :zip_code %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :address,"住所" %></th>
+    <td><%= f.text_field :address %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :name, "宛名" %></th>
+    <td><%= f.text_field :name %></td>
+    <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+  </tr>
+</table>
+<% end %>
