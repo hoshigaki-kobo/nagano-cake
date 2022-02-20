@@ -5,7 +5,8 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
 
-  def shipping.address
+
+  def @shipping.address
     if select.address == "ご自身の住所"
       puts = Customer.zip_code
       puts = Customer.addresss

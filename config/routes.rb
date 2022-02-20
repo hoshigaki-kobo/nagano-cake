@@ -7,24 +7,26 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
-  #homesコントローラ
-  root to: "public/homes#top", as: "root"
-  get "about"=>"public/homes#about", as: "about"
-  #costomersコントローラ
-  resource :costomers, only: [:show,:edit,:update]
-  get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
-  patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
-  #ordersコントローラ
-  resources :orders, only: [:new,:create,:index,:show]
-  post "orders/comfirm" => "public/orders#confirm", as: "confirm"
-  get "orders/complete" => "public/orders#complete", as: "complete"
-  #shippingsコントローラ
-  resources :shippings, only: [:index,:create,:edit,:update,:destroy]
-  #itemsコントローラ
-  resources :items, only: [:index,:show]
-  #cart_itemsコントローラ
-  resources :cart_items, only: [:index,:create,:update,:destroy]
-  delete "cart_items/destroy_all" => "public/cart_items#destroy_all"
+  scope module: :public do
+    #homesコントローラ
+    root to: "homes#top", as: "root"
+    get "about"=>"homes#about", as: "about"
+    #costomersコントローラ
+    resource :costomers, only: [:show,:edit,:update]
+    get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
+   patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
+    #ordersコントローラ
+    resources :orders, only: [:new,:create,:index,:show]
+    post "orders/comfirm" => "orders#confirm", as: "confirm"
+    get "orders/complete" => "orders#complete", as: "complete"
+    #shippingsコントローラ
+    resources :shippings, only: [:index,:create,:edit,:update,:destroy]
+    #itemsコントローラ
+    resources :items, only: [:index,:show]
+    #cart_itemsコントローラ
+    resources :cart_items, only: [:index,:create,:update,:destroy]
+    delete "cart_items/destroy_all" => "public/cart_items#destroy_all"
+  end
   #管理者側
   namespace :admin do
     #homesコントローラ
