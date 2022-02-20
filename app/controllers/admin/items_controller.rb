@@ -29,6 +29,8 @@ class Admin::ItemsController < ApplicationController
     @item.destroy
   end
 
+  private
+
   def item_params
     params.require(:item).permit(:name,:introduction,:genre_id,:tax_included,:is_active,:item_image)
   end
