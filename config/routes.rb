@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     #costomersコントローラ
     resource :costomers, only: [:show,:edit,:update]
     get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
-   patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
+    patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
     #ordersコントローラ
     resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index,:show]
     #cart_itemsコントローラ
     resources :cart_items, only: [:index,:create,:update,:destroy]
-    delete "cart_items/destroy_all" => "public/cart_items#destroy_all"
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
   #管理者側
   namespace :admin do
