@@ -8,13 +8,13 @@ class Public::ItemsController < ApplicationController
 
 
 
-    # # ↓ショータ記述 『カートに入れる』form_with用インスタンスの定義 ログイン機能完成後にコメントアウト解除
-    # if current_customer.cart_items.find_by(item_id:params[:id]).exists?
-    #   @cart_item = current_customer.cart_items.find_by(item_id:params[:id])
-    # else
-    #   @cart_item = current_customer.cart_items.new(item_id:params[:id]) ←無理かも
-    #   @cart_item = CartItem.new ←コッチかも
-    # end
+    # 『カートに入れる』form_with用インスタンスの定義
+    @item = Item.find(params[:id])
+    if current_customer.cart_items.find_by(item_id:params[:id]).present?
+      @cart_item = current_customer.cart_items.find_by(item_id:params[:id])
+    else
+      @cart_item = CartItem.new
+    end
   end
 
 end

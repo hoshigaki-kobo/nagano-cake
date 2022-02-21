@@ -4,9 +4,12 @@
 
 
 
-<p>↓※ショータ cart_items#create発火用ボタン<↓/p>
+<p>↓cart_items#create/#update発火用ボタン↓</p>
 
-<%#= form_with model:@cart_item, local:true do |f| %>
-  <%#= f.select :quantity, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]] %>
-  <%#= f.submit "カートに入れる", class: 'btn btn-success' %>
-<%# end %>
+<%= @item.name %>　<!--←デバッグ用-->
+
+<%= form_with model:@cart_item, local:true do |f| %>
+  <%= f.select :quantity, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]] %>
+  <%= f.hidden_field :item_id, value: params[:id] %>
+  <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+<% end %>
