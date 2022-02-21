@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     #itemsコントローラ
     resources :items, only: [:index,:show]
     #cart_itemsコントローラ
+    delete "cart_items/destroy_all" => "cart_items#destroy_all",as: "destroy_all"
     resources :cart_items, only: [:index,:create,:update,:destroy]
-    delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
   #管理者側
   namespace :admin do
