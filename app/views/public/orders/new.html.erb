@@ -1,0 +1,49 @@
+  <div class = "container">
+    <div class = "row">
+        <h3>注文情報入力</h3><br>
+    </div>
+        <!--bootstrapのマス指定-->
+        <!--下記ハリボテならば?どうする-->
+    <div class = "row" >
+        <strong><h4>支払方法</h4></strong>
+    </div>
+        <%= form_with model: @customer, local:true do |f|%>
+        <div class="form-group">
+          <%= f.radio_button :payment_method, :credit_card, checked: true %>
+          <%= f.label :payment_method, "クレジットカード" %>
+          <%= f.radio_button :payment_method, "transfer" %>
+          <%= f.label :payment_method, "銀行振込" %>
+
+        </div>
+        <% end %>
+    <div class = "row" >
+        <strong><h4>お届け先</h4></strong>
+    </div>
+          <%= form_with model: @shipping, local:true do |f| %>
+            <div class="form-group">
+              <%= f.radio_button :address, current_customer %>
+              <%= f.label :address, "ご自身の住所" %>
+            </div>
+            <div class="form-group">
+              <%= f.radio_button :address, @shipping %>
+              <%= f.label :shipping_id, "登録済住所から選択" %>
+              <%= f.select :shipping_id, options_from_collection_for_select(Shipping.all, :id, :shipping_display) %>
+            </div>
+            <div>
+              <%= f.radio_button :new_address, 3 %>
+              <%= f.label :new_address, "新しいお届け先" %><br>
+              <!--上記コード2行自信なし-->
+              <%= f.label :zip_code, "郵便番号(ハイフンなし)"%>
+              <%= f.text_field :zip_code %><br>
+              <%#= f.text_field :zip_code, "郵便番号(ハイフンなし)" class: 'form-control shipping_zip_code' %>
+              <%= f.label :address, "住所" %>
+              <%= f.text_field :address, :size=> "40" %><br>
+              <%#= f.text_field :address, "住所" class: 'form-control shippng_address', :size=> "30" %>
+              <%= f.label :name, "宛名" %>
+              <%= f.text_field :name %><br>
+              <%#= f.text_field :name, "宛名" class: 'form-control shipping_name' %>
+          </div>
+              <%= f.submit "注文画面へ進む", class: "btn btn-success" %>
+        <% end %>
+      </div>
+  </div>
