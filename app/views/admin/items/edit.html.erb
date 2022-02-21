@@ -1,11 +1,11 @@
 <div class="container">
   <div class = "row my-5">
     <div class="col-4 text-center">
-      <h2>商品新規登録</h2>
+      <h2>商品編集</h2>
     </div>
   </div>
   <div class="row justify-content-center">
-    <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+    <%= form_with model: @item, url: admin_item_path,local: true, method: :patch do |f| %>
       <table class="table table-borderless">
         <tr>
           <th class="form-group"><%= f.label :item_image,"商品画像" %></th>
@@ -39,9 +39,9 @@
           </td>
         </tr>
       </table>
-    <div class="row justify-content-center">
-      <%= f.submit "新規登録", class: "btn btn-success" %>
-    </div>
+      <div class="row justify-content-center">
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      </div>
     <% end %>
   </div>
 </div>
