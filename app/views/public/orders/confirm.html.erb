@@ -29,6 +29,7 @@
     <p><strong>支払方法 </strong><%= @order.payment_method %></p><br>
 		<p><strong>お届け先 </strong><%= @order.zip_code %> <%= @order.address %> <%= @order.name %></p><br>
     <%= f.submit "注文を確定する", class: "btn btn-success" %>
+    <%= link_to "注文を確定する", customers_orders_complete_path, class: 'btn btn-primary col-xs-12' %>
   </div>
   <% end %>
 </main>
