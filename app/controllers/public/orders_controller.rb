@@ -35,8 +35,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order= order.find(params[:id])
-    @order_items = @order.order_items
+    # @order= order.find(params[:id])
+    # @order_items = @order.order_items
   end
 
   # current_customer.cart_items.destroy_all #カートの中身を削除エラーになるためコメントアウト
@@ -45,5 +45,9 @@ class Public::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:payment_method, :name, :address, :postage, :zip_code, :item_id, :total_amount, :quantity)
+  end
+
+  def shipping_params
+    params.require(:order).permit(:zip_code, :address, :name)
   end
 end
