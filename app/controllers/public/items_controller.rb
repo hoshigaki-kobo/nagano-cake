@@ -12,7 +12,8 @@ class Public::ItemsController < ApplicationController
     # if current_customer.cart_items.find_by(item_id:params[:id]).exists?
     #   @cart_item = current_customer.cart_items.find_by(item_id:params[:id])
     # else
-    #   @cart_item = current_customer.cart_items.new(item_id:params[:id])
+    #   @cart_item = current_customer.cart_items.new(item_id:params[:id]) ←無理かも
+    #   @cart_item = CartItem.new ←コッチかも
     # end
   end
 

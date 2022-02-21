@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @cart_items.each do |cart_item| <%></%>
+          <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
                 <%= image_tag cart_item.item.get_item_image("100x100") %>
@@ -40,8 +40,7 @@
         </tbody>
       </table>
 
-    <span class="btn btn-primary">[買い物を続ける]</span>
-    <%#= link_to "買い物を続ける", items_path, class:"btn btn-primary" %>　<!--←コッチ使う-->
+    <%= link_to "買い物を続ける", items_path, class:"btn btn-primary" %>
 
     <table class="table">
       <th>合計金額</th>
