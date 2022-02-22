@@ -6,8 +6,9 @@ class Public::ShippingsController < ApplicationController
   end
 
   def create
-    @shipping = Shipping.new(shipping_params)
-    @shipping.save
+    shipping = Shipping.new(shipping_params)
+    shipping.customer_id = current_customer.id
+    shipping.save
     @shippings = Shipping.all
     redirect_to shippings_path
   end
@@ -26,6 +27,7 @@ class Public::ShippingsController < ApplicationController
   def destory
     @shipping = Shipping.find(params[:id])
     @shipping.destory
+    redirect_to shippings_path
   end
 
   private

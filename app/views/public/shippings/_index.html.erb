@@ -14,15 +14,16 @@
       <tb><%= shipping.address %></tb>
       <tb><%= shipping.name %></tb>
       <tb>
-        <%= link_to edit_shipping_path(shipping) do %>
+        <%= link_to edit_shipping_path(shipping.id) do %>
           <button class ="btn btn-success">編集</button>
         <% end %>
       </tb>
       <tb>
-        <%= link_to shipping_path(shipping), method: :delete, data: { confirm: '本当に消しますか？' } %>
+        <%= link_to shipping_path(shipping.id), method: :delete, data: { confirm: '本当に消しますか？' } do %>
           <button class = "btn btn-danger">削除</button>
         <% end %>
       </tb>
     </tr>
+    <% end %>
   </tbody>
 </table>
