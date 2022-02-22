@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   #管理者側
   namespace :admin do
     #homesコントローラ
-    root to: "admin/homes#top", as: "admin_root"
+    root to: "homes#top", as: "root"
     #itemsコントローラ
     resources :items, only: [:index,:show,:new,:create,:edit,:update]
     #genresコントローラ
