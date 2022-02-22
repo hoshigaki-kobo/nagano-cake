@@ -9,7 +9,7 @@
   <ul class="navbar-nav ml-auto">
   <% if customer_signed_in? %>
     <li>
-      <%= link_to "", class: 'nav-link text-light border border-light rounded' do %>
+      <%= link_to customers_path, class: 'nav-link text-light border border-light rounded' do %>
         マイページ
       <% end %>
     </li>
@@ -40,13 +40,13 @@
     </li>
 
     <li>
-      <%= link_to admin_customers_path, class: 'nav-link text-light border border-light rounded' do %>
+      <%= link_to admin_costomers_path, class: 'nav-link text-light border border-light rounded' do %>
         会員一覧
       <% end %>
     </li>
 
     <li>
-      <%= link_to admin_oeders_path, class: 'nav-link text-light border border-light rounded' do %>
+      <%= link_to admin_root_path, class: 'nav-link text-light border border-light rounded' do %>
         注文履歴一覧
       <% end %>
     </li>
@@ -58,8 +58,8 @@
     </li>
 
     <li>
-      <%= link_to destroy_admin_session_path, method: delete, class: 'nav-link text-light border border-light rounded' do %>
-        ログアウト
+      <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light border border-light rounded' do %>
+      ログアウト
       <% end %>
     </li>
 

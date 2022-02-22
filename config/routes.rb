@@ -13,8 +13,13 @@ Rails.application.routes.draw do
     get "about"=>"homes#about", as: "about"
     #costomersコントローラ
     resource :customers, only: [:show,:edit,:update]
+<<<<<<< HEAD
     get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
     patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
+=======
+    get "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+    patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
+>>>>>>> origin/develop
     #ordersコントローラ
     resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
