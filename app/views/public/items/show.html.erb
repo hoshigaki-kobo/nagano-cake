@@ -1,15 +1,30 @@
+<dev class = "container">
+  <div class = "row justify-content-center">
+    <div class = "col4">
+      <%= image_tag @item.get_item_image("300x300") %>
+    </div>
+    <div class = "col-4">
+      <div class = "card">
+        <div class = "card-header">
+          <h2><%= @item.name %></h2>
+        </div>
+        <div class = "card-body">
+          <h5 class = "card-title">
+            <%= @item.introduction %>
+          </h5>
+          <div class = "card-price">
+            ¥<%= @item.with_tax_price %><small>(税込価格)</small>
+          </div>
+          <%= form_with model:@cart_item, local:true do |f| %>
+            <%= f.select :quantity, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]] %>
+            <%= f.hidden_field :item_id, value: params[:id] %>
+            <%= f.submit "カートに入れる", class: 'btn btn-success' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</dev>
 
 
 
-
-
-
-<p>↓cart_items#create/#update発火用ボタン↓</p>
-
-<%= @item.name %>　<!--←デバッグ用-->
-
-<%= form_with model:@cart_item, local:true do |f| %>
-  <%= f.select :quantity, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10]] %>
-  <%= f.hidden_field :item_id, value: params[:id] %>
-  <%= f.submit "カートに入れる", class: 'btn btn-success' %>
-<% end %>

@@ -1,13 +1,10 @@
 class Public::ItemsController < ApplicationController
 
   def index
+    @items = Item.page(params[:page])
   end
 
-
   def show
-
-
-
     # 『カートに入れる』form_with用インスタンスの定義
     @item = Item.find(params[:id])
     if current_customer.cart_items.find_by(item_id:params[:id]).present?
@@ -16,5 +13,4 @@ class Public::ItemsController < ApplicationController
       @cart_item = CartItem.new
     end
   end
-
 end
