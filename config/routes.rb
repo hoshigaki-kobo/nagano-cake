@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root to: "homes#top", as: "root"
     get "about"=>"homes#about", as: "about"
     #costomersコントローラ
-    resource :costomers, only: [:show,:edit,:update]
+    resource :customers, only: [:show,:edit,:update]
     get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
     patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
     #ordersコントローラ
