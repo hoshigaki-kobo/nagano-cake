@@ -1,0 +1,25 @@
+<div class = "contaner">
+  <div class ="row">
+    <div class = "col-4">
+      <h2>商品一覧</h2>
+    </div>
+  </div>
+  <div class = "row">
+    <% @items.each do |item| %>
+      <div class = "col-3">
+        <div class = "card w-20 shadow-lg" style="width: 18rem;">
+          <%= image_tag item.get_item_image("300x200"), class: "card-img-top img-fluid" %>
+          <div class = "card-body">
+            <div class = "row">
+              <%= item.name %>
+            </div>
+            <div class = "row">
+              <%= item.with_tax_price %>円
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @items %>
+</div>
