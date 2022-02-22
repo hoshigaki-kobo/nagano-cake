@@ -1,0 +1,96 @@
+<header>
+  <nav class="navbar navbar-expand-lg bg-info p-3">
+  <!--レスポンシブデザイン変更タイミング(lg) -->
+    <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <li class="navbar-nav">
+        <i class="nav-link text-light">NaganoCake</i>
+      </li>
+  <ul class="navbar-nav ml-auto">
+  <% if customer_signed_in? %>
+    <li>
+      <%= link_to "", class: 'nav-link text-light border border-light rounded' do %>
+        マイページ
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to items_path, class: 'nav-link text-light border border-light rounded' do %>
+        商品一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to cart_items_path, class: 'nav-link text-light border border-light rounded' do %>
+        カート
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light border border-light rounded' do %>
+        ログアウト
+      <% end %>
+    </li>
+
+  <% elsif admin_signed_in? %>
+    <li>
+      <%= link_to admin_items_path, class: 'nav-link text-light border border-light rounded' do %>
+        商品一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to admin_customers_path, class: 'nav-link text-light border border-light rounded' do %>
+        会員一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to admin_oeders_path, class: 'nav-link text-light border border-light rounded' do %>
+        注文履歴一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to admin_genres_path, class: 'nav-link text-light border border-light rounded' do %>
+        ジャンル一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to destroy_admin_session_path, method: delete, class: 'nav-link text-light border border-light rounded' do %>
+        ログアウト
+      <% end %>
+    </li>
+
+  <% else %>
+    <li>
+      <%= link_to about_path, class: 'nav-link text-light border border-light rounded' do %>
+        About
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to items_path, class: 'nav-link text-light border border-light rounded' do %>
+        商品一覧
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to new_customer_registration_path, class: 'nav-link text-light border border-light rounded' do %>
+        新規登録
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to new_customer_session_path, class: 'nav-link text-light border border-light rounded' do %>
+        ログイン
+      <% end %>
+    </li>
+
+  <% end %>
+  </ul>
+  </div>
+  </div>
+  </nav>
+</header>
