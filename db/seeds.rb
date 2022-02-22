@@ -5,11 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-<<<<<<< HEAD
-Admin.create!(
-   email: 'user@test.com',
-   password: 'testtest',
-)
+# Admin.create!(
+#   email: 'user@test.com',
+#   password: 'testtest',
+# )
 
 
 Order.create!(
@@ -41,10 +40,5 @@ OrderItem.create!(
   quantity: 1,
   tex_excluded: 1650,
 )
-=======
 
-Admin.create!(
-  email: "a@a",
-  password: "aaaaaa",
-  )
->>>>>>> origin/develop
+
