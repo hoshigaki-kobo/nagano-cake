@@ -67,10 +67,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id]) #order特定
-    @order_item = @order.order_items #特定したorserからorder_items全部取得
+    # @order = Order.find(params[:id]) #order特定
+    # @order_item = @order.order_items #特定したorserからorder_items全部取得
     @total = 0 #変数提議　合計を計算する変数
-    # @order= order.find(params[:id])
     # @order_items = @order.order_items
   end
 
