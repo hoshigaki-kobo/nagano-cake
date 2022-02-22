@@ -12,9 +12,9 @@ Rails.application.routes.draw do
     root to: "homes#top", as: "root"
     get "about"=>"homes#about", as: "about"
     #costomersコントローラ
-    resource :costomers, only: [:show,:edit,:update]
-    get "customers/unsubscribe" => "public/costomers#unsubscribe", as: "unsubscribe"
-    patch "customers/withdraw" => "public/costomers#withdraw", as: "withdraw"
+    resource :customers, only: [:show,:edit,:update]
+    get "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
+    patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
     #ordersコントローラ
     resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   #管理者側
   namespace :admin do
     #homesコントローラ
-    root to: "admin/homes#top", as: "admin_root"
+    root to: "homes#top", as: "root"
     #itemsコントローラ
     resources :items, only: [:index,:show,:new,:create,:edit,:update]
     #genresコントローラ

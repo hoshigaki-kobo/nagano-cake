@@ -1,35 +1,33 @@
-<main>
   <div calss = "containar">
     <div class = "row">
       <div class = "col-xs-6">
-      <h2>注文情報確認</h2>
-      <!--表を導入-->
+        <p><strong><h4>注文情報確認</h4></strong></p>
+        <table class='table table-hover table-inverse'>
       　<thead>
-      　 <th><%= @item.name %>商品名
-　      <%= @item.price %>単価(税込)
-        <%= @order.amount %>数量
-        <%= @order.quantity %>小計
-        </th>
+      　  <tr>
+      　 <th>商品名</th>
+      　 <th>単価(税込）</th>
+      　 <th>数量</th>
+      　 <th>小計</th>
+           <% @cart_items.each do |cart| %>
+           </tr>
+            <td><%= cart.item.name %><%= cart.item.name %></td>
+            <td><%= (cart.item.price).to_s(:delimited) %></td>
+            <td><%= cart.quantity %>数量</td>
+            <td><%= (cart.item.price*cart.quantity).to_s(:delimited) %></td>
+            <% end %>
         </thead>
-        <tbody>
-        <tr>
-          <td><%= @item_image item.XXXXpathXXXX, size:'60x60' %></td>
-          <td><%= @item.name %></td>
-          <td><%= @item.price %></td>
-          <td><%= xxxxxx  %></td>
-        </tr>
-        </tbody>
+       </table>
       </div>
-
-  <%= form_with model:[@item, @order], url:(item_order_path) do |f| %>
-  <div class = "cpl-xs-3 offset-xs-2">
-    <th><%= f.hidden_field :postage, :value => 800 %>送料</th>
-    <th><%= f.hidden_field :xxxxxx %>商品合計</th>
-    <th><%= f.hidden_field :total_amount %>請求金額</th>
-    <p><strong>支払方法 </strong><%= @order.payment_method %></p><br>
-		<p><strong>お届け先 </strong><%= @order.zip_code %> <%= @order.address %> <%= @order.name %></p><br>
-    <%= f.submit "注文を確定する", class: "btn btn-success" %>
-    <%= link_to "注文を確定する", customers_orders_complete_path, class: 'btn btn-primary col-xs-12' %>
-  </div>
-  <% end %>
-</main>
+      <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
+		  <p><strong><h4>お届け先</h4></strong><%= @order.address %> <%#= @order.address %> <%#= @order.name %></p><br>
+		  <%= form_with model: @order, url: orders_path, local: true do |f| %>
+		  <div class = "col-xs-3 ">
+		    <table class='table table-hover table-inverse'>
+		    <tr><%= f.hidden_field :postage, :value => 800 %>送料</tr><br>
+        <tr><%= f.hidden_field :xxxxxx %>商品合計</tr><br>
+        <tr><%= f.hidden_field :total_amount %>請求金額</tr>
+        </table>
+      </div>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
+        <% end %>

@@ -1,11 +1,65 @@
-<main>
-    <div calss = "containar">
-        <div class = "row">
-            <div class = "col-md-9">
-            <H2>注文履歴詳細</H2>
+<div class="container takasa">
+	<h4>注文履歴詳細</h4><br>
+	<div class="row">
+		<div class="col-xs-6">
+			<h4>注文情報</h4>
+			<table align="left" class="table table-bordered">
+				<tr>
+					<td>注文日</th>
+					<td><%= l @order.created_at, format: :short %></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td>〒<%= @order.zip_code %><br><%= @order.address %><br><%= @order.name %></td>
+				</tr>
+				<tr>
+					<td>支払方法</td>
+					<td><%= @order.payment_method %></td>
+				</tr>
+				<tr>
+					<td>ステータス</td>
+					<td><%= @order.order_status %></td>
+				</tr>
+			</table>
 
-
-            </div>
-        </div>
-    </div>
- </main>
+			<p>注文内容</p>
+				<table class="table table-bordered">
+					<tr>
+						<th>商品</th>
+						<th>単価（税込み)</th>
+						<th>個数</th>
+						<th>小計</th>
+					</tr>
+					<% @order_item.each do |order_item| %>
+					<tr>
+						<td><%= order_item.item.name %></td>
+						<td><%= order_item.tex_excluded %></td>
+						<td><%= order_item.quantity %></td>
+						<td><%= (order_item.tex_excluded*order_item.quantity) %>
+							<% @total += (order_item.tex_excluded*order_item.quantity) %>
+						</td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<div class="row">
+					<div class="col-xs-6">
+				  <br><p>請求情報</p>
+				  <table class="table table-bordered">
+					<tr>
+						<td>商品合計</td>
+						<th><%= @total %></th>
+					</tr>
+					<tr>
+						<td>配送料</td>
+						<th>800</th>
+					</tr>
+					<tr>
+						<td>ご請求額</td>
+						<th><%= @total + 800 %></th>
+					</tr>
+				  </table>
+		        </div>
+		</div>
+	</div>
+</div>
