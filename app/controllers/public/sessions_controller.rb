@@ -5,6 +5,11 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   protected
+
+  def after_sign_in_path_for(resource)
+    items_path
+  end
+
   # 退会しているかを判断するメソッド
   def customer_state
     ## 【処理内容1】 入力されたemailからアカウントを1件取得
