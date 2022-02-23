@@ -2,12 +2,19 @@
   <nav class="navbar navbar-expand-lg bg-info p-3">
   <!--レスポンシブデザイン変更タイミング(lg) -->
     <div class="container">
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <li class="navbar-nav">
-        <i class="nav-link text-light">NaganoCake</i>
-      </li>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <li class="navbar-nav">
+          <%= image_tag 'ヘッダーロゴ.png', size: "100x100" %>
+        </li>
+
+
   <ul class="navbar-nav ml-auto">
   <% if customer_signed_in? %>
+    <li class="customer-name text-light">
+      ようこそ、<%= current_customer.first_name %>さん！
+    </li>
+
     <li>
       <%= link_to customer_path(current_customer), class: 'nav-link text-light border border-light rounded' do %>
         マイページ
@@ -40,7 +47,7 @@
     </li>
 
     <li>
-      <%= link_to admin_costomers_path, class: 'nav-link text-light border border-light rounded' do %>
+      <%= link_to admin_customers_path, class: 'nav-link text-light border border-light rounded' do %>
         会員一覧
       <% end %>
     </li>
@@ -90,6 +97,7 @@
 
   <% end %>
   </ul>
+
   </div>
   </div>
   </nav>
