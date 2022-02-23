@@ -1,0 +1,2 @@
+module Pcblic::GenresHelper
+end

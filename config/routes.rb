@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get "orders/complete" => "orders#complete", as: "complete"
     #shippingsコントローラ
     resources :shippings, only: [:index,:create,:edit,:update,:destroy]
+    #genresコントローラ
+    resources :genres, only: [:show]
     #itemsコントローラ
     resources :items, only: [:index,:show]
     #cart_itemsコントローラ
