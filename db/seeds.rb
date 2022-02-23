@@ -9,8 +9,7 @@
 #   email: 'user@test.com',
 #   password: 'testtest',
 # )
-<<<<<<< HEAD
-=======
+
 
 
 Order.create!(
@@ -47,5 +46,4 @@ Admin.create!(
   email: "a@a",
   password: "aaaaaa",
   )
-#   Character.create(name: 'Luke', movie: movies.first)
->>>>>>> origin/develop
+
