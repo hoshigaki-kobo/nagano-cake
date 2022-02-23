@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   #before_action :authenticate_customer!
 
   def show
-    @customer = Customer.find(params:[id])
+    @customer = Customer.find(params[:id])
     if @customer.id != current_customer.id
       redirect_to root_path
     end
