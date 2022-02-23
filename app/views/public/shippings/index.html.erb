@@ -1,10 +1,12 @@
 <div class="container">
-  <div class="row">
-    <h2>配送先登録・一覧</h2>
+  <div class="row my-5">
+    <div class = "col-4 text-center">
+      <h2>配送先登録・一覧</h2>
+    </div>
   </div>
   <div class="row">
     <table class="table table-borderless table-sm">
-      <%= form_with model: @shipping, local: true do |f| %>
+      <%= form_with model: @shipping, url: shippings_path, local: true do |f| %>
       <tr>
         <th><%= f.label :zip_code,"郵便番号(ハイフンなし)" %></th>
         <td class = "col-7">
