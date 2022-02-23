@@ -13,6 +13,7 @@
   <body class="d-flex flex-column m-3"><!--上から縦並び -->
     <%= render 'layouts/header' %>
     <main>
+      <p class="notice"><%= flash[:notice] %></p>
     <%= yield %>
     </main>
 
