@@ -12,11 +12,11 @@ Rails.application.routes.draw do
     root to: "homes#top", as: "root"
     get "about"=>"homes#about", as: "about"
     #costomersコントローラ
+    resource :customers, only: [:show,:edit,:update]
     get "customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
     patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
     #上の2行は下のresourcesより上に記述する必要がある
     resources :customers, only: [:show,:edit,:update]
-
     #ordersコントローラ
     resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     #genresコントローラ
     resources :genres, only: [:create,:index,:edit,:update]
     #customersコントローラ
-    resources :costomers, only: [:index,:show,:edit,:update]
+    resources :customers, only: [:index,:show,:edit,:update]
     #ordersコントローラ
     resources :orders, only: [:show,:update] do
       resources :order_items, only: [:update]
