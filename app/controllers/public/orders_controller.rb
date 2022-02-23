@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
       # redirect_to 'top'
     end
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
 
