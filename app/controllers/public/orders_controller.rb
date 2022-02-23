@@ -28,12 +28,12 @@ class Public::OrdersController < ApplicationController
         @order.address = Address.find(params[:order][:shipping]).address
       else
         render :new
-        #既存のデータを使ってoriありえないですが、万が一データが足りない場合は new を render します
+        #既存のデータを使っておりありえないですが、万が一データが足りない場合は new を render します
       end
     elsif params[:order][:address_nnmber] == "2"
       #viewで定義している address_numberが"2"だったときにこの処理を実行します
       address_new = current_customer.addresses.new(address_params)
-      if address_new.save # 確定前(確認画面)で save してしまうことになりますが、私の知識の限界でした
+      if address_new.save # 確定前(確認画面)で save してしまうことになります
       else
         render :new
         #ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合はnewに戻します
@@ -42,17 +42,18 @@ class Public::OrdersController < ApplicationController
       # redirect_to 'top'
     end
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
+    @total = 0 #変数提議　合計を計算する変数
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
 
   def create
     cart_items = current_customer.cart_items.all
-    @order = Ordrer.new
+    @order = Order.new
     @order.customer_id = current_customer.id
 
     if @order.save
-      cart_item.destroy.all
+      cart_items.destroy.all
       redirect_to complete_path(@order)
     end
   end

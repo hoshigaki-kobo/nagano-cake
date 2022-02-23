@@ -1,4 +1,4 @@
- <div calss = "containar">
+ <div calss = "container">
     <div class = "row">
       <div class = "col-xs-6">
         <p><strong><h4>注文情報確認</h4></strong></p>
@@ -9,26 +9,51 @@
       　       <th>単価(税込）</th>
       　       <th>数量</th>
       　       <th>小計</th>
-               <% @cart_items.each do |cart_item| %>
-             </tr>
-              <td><%= cart.item.name %></td>
-              <td><%= cart.item.tax_included %></td>
-              <td><%= cart.quantity %>数量</td>
-              <td><%= (cart.item.tex_excluded*cart.quantity %></td>
+      　      </tr>
             </thead>
+            <tbody>
+               <% @cart_items.each do |cart_item| %>
+              <td><%= cart_item.item.name %></td>
+              <td><%= cart_item.item.tax_included %></td>
+              <td><%= cart_item.quantity %>数量</td>
+              <td><%= (cart_item.item.tax_included*cart_item.quantity) %></td>
+              <% end %>
+            </tbody>
            </table>
       </div>
         <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
 		    <p><strong><h4>お届け先</h4></strong><%= @order.address %> <%#= @order.address %> <%#= @order.name %></p><br>
-		  <%= form_with model: @order, url: orders_path, local: true do |f| %>
-		  <div class = "col-xs-3 ">
-		      <table class='table table-hover table-inverse'>
-		        <tr><%= f.hidden_field :postage, :value => 800 %>送料</tr><br>
-            <tr><%= f.hidden_field :subtotal %>商品合計</tr><br>
-            <tr><%= f.hidden_field :total_amount %>請求金額</tr>
-          </table>
-       </div>
+		      <div class = "col-xs-3">
+		      <table class='table table-hover table-inverse'
+		        <%= form_with model: @order, url: orders_path, local: true do |f| %>
+		        <tr>
+		        <td>送料</td>
+		        <th><%%></th>
+		        </tr>
+		        <tr>
+		          <td>商品合計</td>
+		          <th>
+		            <%= (cart_item.tex_excluded*cart_item.quantity) %>
+							  <% @total += (cart_item.tex_excluded*cart_item.quantity) %>
+		          </th>
+		        </tr>
+		        <tr>
+		          <td>請求金額</td>
+		          <th><%= total_amount + 800 %></th>
+		        </tr>
+		      <% end %>
+		      </table>
+
+
+
+
+		        <%= form_with model: @order, url: orders_path, local: true do |f| %>
+		        <%= f.hidden_field :postage, :value => 800 %>
+            <%= f.hidden_field :subtotal %>
+            <%= f.hidden_field :total_amount +800 %>
             <%= f.submit "注文を確定する", class: "btn btn-success" %>
-        <% end %>
+            <% end %>
+          <!--</table>-->
+          <!--</div>-->
     </div>
  </div>
