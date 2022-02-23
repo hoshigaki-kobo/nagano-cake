@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     #genresコントローラ
     resources :genres, only: [:create,:index,:edit,:update]
     #customersコントローラ
-    resources :costomers, only: [:index,:show,:edit,:update]
+    resources :customers, only: [:index,:show,:edit,:update]
     #ordersコントローラ
     resources :orders, only: [:show,:update] do
       resources :order_items, only: [:update]
