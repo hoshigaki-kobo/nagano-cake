@@ -24,33 +24,29 @@
         <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
 		    <p><strong><h4>お届け先</h4></strong><%= @order.address %> <%#= @order.address %> <%#= @order.name %></p><br>
 		      <div class = "col-xs-3">
-		      <table class='table table-hover table-inverse'
-		        <%= form_with model: @order, url: orders_path, local: true do |f| %>
-		        <tr>
+		      <table class='table table-hover table-inverse'>
 		        <td>送料</td>
-		        <th><%%></th>
+		        <th><% @postage %></th>
 		        </tr>
 		        <tr>
 		          <td>商品合計</td>
 		          <th>
-		            <%= (cart_item.tex_excluded*cart_item.quantity) %>
-							  <% @total += (cart_item.tex_excluded*cart_item.quantity) %>
+							  <% @total %>
 		          </th>
 		        </tr>
 		        <tr>
 		          <td>請求金額</td>
-		          <th><%= total_amount + 800 %></th>
+		          <th><%= @total_amount %></th>
 		        </tr>
-		      <% end %>
 		      </table>
 
 
 
 
 		        <%= form_with model: @order, url: orders_path, local: true do |f| %>
-		        <%= f.hidden_field :postage, :value => 800 %>
-            <%= f.hidden_field :subtotal %>
-            <%= f.hidden_field :total_amount +800 %>
+		        <%= f.hidden_field :@postage %>
+            <%= f.hidden_field :@total %>
+            <%= f.hidden_field :@total_amount %>
             <%= f.submit "注文を確定する", class: "btn btn-success" %>
             <% end %>
           <!--</table>-->

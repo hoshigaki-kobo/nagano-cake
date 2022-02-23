@@ -43,17 +43,23 @@ class Public::OrdersController < ApplicationController
     end
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
     @total = 0 #変数提議　合計を計算する変数
+    @cart_items.each do |cart_item|
+    @total += cart_item.quantity*cart_item.item.tax_included
+    @postage = "800"
+    @total_amount = @total + 800
+    end
+
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
 
   def create
-    cart_items = current_customer.cart_items.all
+    @cart_items = current_customer.cart_items.all
     @order = Order.new
     @order.customer_id = current_customer.id
 
     if @order.save
-      cart_items.destroy.all
+      @cart_items.destroy.all
       redirect_to complete_path(@order)
     end
   end
