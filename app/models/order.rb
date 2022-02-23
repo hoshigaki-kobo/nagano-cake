@@ -14,4 +14,5 @@ class Order < ApplicationRecord
     @order = Order.page(params[:page])
   end
 
+
 end

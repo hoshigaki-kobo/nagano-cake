@@ -4,12 +4,17 @@
         <p><strong><h4>注文情報確認</h4></strong></p>
         <table class='table table-hover table-inverse'>
       　<thead>
+      　  <tr>
+      　 <th>商品名</th>
+      　 <th>単価(税込）</th>
+      　 <th>数量</th>
+      　 <th>小計</th>
            <% @cart_items.each do |cart| %>
-            <td><%= cart.item.name %>商品名</td>
-            <td><%#= @item_image item.XXXXpathXXXX, size:'60x60' %></td>
-            <td><%= (cart.item.price).to_s(:delimited) %>単価(税込)</td>
+           </tr>
+            <td><%= cart.item.name %><%= cart.item.name %></td>
+            <td><%= (cart.item.price).to_s(:delimited) %></td>
             <td><%= cart.quantity %>数量</td>
-            <td><%= (cart.item.price*cart.quantity).to_s(:delimited) %>小計</td>
+            <td><%= (cart.item.price*cart.quantity).to_s(:delimited) %></td>
             <% end %>
         </thead>
        </table>
