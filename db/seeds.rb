@@ -41,4 +41,8 @@ OrderItem.create!(
   tex_excluded: 1650,
 )
 
-
+Admin.create!(
+  email: "a@a",
+  password: "aaaaaa",
+  )
+#   Character.create(name: 'Luke', movie: movies.first)
