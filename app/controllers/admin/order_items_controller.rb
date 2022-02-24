@@ -5,12 +5,13 @@ class Admin::OrderItemsController < ApplicationController
   	@order_item = OrderItem.find(params[:id]) #　特定
 		@order = @order_item.order #注文商品から注文テーブルの呼び出し（何度も呼び出すのは処理が増える為）
 		@order_item.update(order_item_params) #　製作ステータスの更新
-		if @order_item.making_status == "製作中" #製作ステータスが「製作作中」なら入る
+		if @order_item.item_status == "製作中" #製作ステータスが「製作作中」なら入る
 			@order.update(order_status: 2) #注文ステータスを「製作中」　に更新
 		elsif @order.order_items.count ==  @order.order_items.where(item_status: "製作完了").count
 			@order.update(order_status: 3) #注文ステータスを「発送準備中]に更新
 		end
 		redirect_to admin_order_path(@order_item.order) #注文詳細に遷移
+	end
 
 
 

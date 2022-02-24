@@ -6,6 +6,14 @@ class Item < ApplicationRecord
 
   validates :is_active, inclusion: [true, false]
 
+  with_options presence: true do
+    validates :name
+    validates :introduction
+    validates :item_image
+    validates :tax_included, format: {with: /\A[0-9]+\z/i}
+  end
+
+
   has_one_attached :item_image
 
   def get_item_image(size)
