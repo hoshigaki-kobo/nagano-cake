@@ -1,2 +1,27 @@
-<h1>Pcblic::Genres#show</h1>
-<p>Find me in app/views/pcblic/genres/show.html.erb</p>
+<div class = "container">
+  <div class ="row my-5">
+    <div class = "col-4">
+      <h3><%= "#{@genre.name} 一覧" %></h3>
+    </div>
+  </div>
+  <div class = "row">
+    <% @items.each do |item| %>
+      <div class = "col-3">
+        <div class = "card w-20 my-2">
+          <%= link_to item_path(item) do %>
+            <%= image_tag item.get_item_image("300x200"),size: "300x200", class: "card-img-top" %>
+          <% end %>
+          <div class = "card-body">
+            <div class = "row">
+              <%= item.name %>
+            </div>
+            <div class = "row">
+              <%= item.with_tax_price %>円
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @items %>
+</div>

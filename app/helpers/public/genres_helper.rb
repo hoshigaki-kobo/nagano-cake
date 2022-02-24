@@ -1,2 +1,2 @@
-module Pcblic::GenresHelper
+module Public::GenresHelper
 end
