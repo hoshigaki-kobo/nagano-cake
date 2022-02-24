@@ -64,4 +64,5 @@ gem 'jquery-rails'
 gem 'pry-byebug', group: :development
 #日本語表記のため下記1行追記
 gem 'rails-i18n'
+gem 'devise-i18n'
 
