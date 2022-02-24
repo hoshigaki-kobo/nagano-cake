@@ -1,11 +1,11 @@
-<div class = "contaner">
+<div class = "container">
   <div class ="row my-5">
     <div class = "col-4">
       <h3>商品一覧</h3>
     </div>
   </div>
   <div class = "row">
-    <% @items.each do |item| %>
+    <% @items_all.each do |item| %>
       <div class = "col-3">
         <div class = "card w-20 my-2">
           <%= link_to item_path(item) do %>
@@ -23,5 +23,5 @@
       </div>
     <% end %>
   </div>
-  <%= paginate @items %>
+  <%= paginate @items_all %>
 </div>
