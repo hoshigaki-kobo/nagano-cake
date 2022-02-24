@@ -9,3 +9,12 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%Y/%m/%d"
+ja:
+  activerecord:
+    attributes:
+      items:
+        name: 商品名
+        introduction: 商品説明
+        item_image: 商品画像
+        tax_included: 税抜き価格
+
