@@ -6,11 +6,13 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+
     # @shipping = Shipping.address
   end
 
   def confirm
     @order = Order.new(order_params)
+
     #new画面から渡ってきたデータ @orderに入れます
     if params[:order][:address_number] == "0"
         #viewで定義しているaddress_numberが"0"だったときにこの処理を実行します
@@ -39,14 +41,15 @@ class Public::OrdersController < ApplicationController
         #ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合はnewに戻します
       end
     end
+
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
     @total = 0 #変数提議　合計を計算する変数
-    @postage = "800"
     @cart_items.each do |cart_item|
       @total += cart_item.quantity*cart_item.item.tax_included
       @total_amount = @total + 800
     end
-
+    @order.total_amount = @total_amount
+    @order.order_status = 0
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
@@ -55,6 +58,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
+    @order.postage = 800
 
     if @order.save
         @cart_items = current_customer.cart_items.all
@@ -66,7 +70,7 @@ class Public::OrdersController < ApplicationController
           @order_items.quantity = cart_item.quantity
           @order_items.save
         end
-      # @cart_items.destroy_all
+       @cart_items.destroy_all
       redirect_to complete_path(@order)
     end
   end
@@ -91,7 +95,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment, :name, :address, :postage, :zip_code, :item_id, :total_amount, :quantity)
+    params.require(:order).permit(:payment, :name, :address, :postage, :zip_code, :item_id, :total_amount, :quantity, :order_status)
   end
 
   def shipping_params
