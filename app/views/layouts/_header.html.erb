@@ -3,15 +3,17 @@
   <!--レスポンシブデザイン変更タイミング(lg) -->
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
         <li class="navbar-nav">
           <%= link_to root_path do %>
             <%= image_tag 'ヘッダーロゴ.png', size: "70x70" %>
           <% end %>
         </li>
-
-
+        <form class="search">
+          <input type="text", class="search_input">
+          <button>検索</button>
+        </form>
   <ul class="navbar-nav ml-auto">
+
   <% if customer_signed_in? %>
     <li class="customer-name text-light">
       ようこそ、<%= current_customer.first_name %>さん！
