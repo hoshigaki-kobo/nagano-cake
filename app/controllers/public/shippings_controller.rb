@@ -2,7 +2,8 @@ class Public::ShippingsController < ApplicationController
 
   def index
     @shipping = Shipping.new
-    @shippings = Shipping.all
+    @customer = current_customer
+    @shippings = @customer.shippings.all
   end
 
   def create
@@ -19,6 +20,9 @@ class Public::ShippingsController < ApplicationController
 
   def edit
     @shipping = Shipping.find(params[:id])
+    if @shipping.customer != current_customer
+      redirect_to shippings_path
+    end
   end
 
   def update
