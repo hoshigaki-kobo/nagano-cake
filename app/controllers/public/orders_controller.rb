@@ -50,6 +50,7 @@ class Public::OrdersController < ApplicationController
     end
     @order.total_amount = @total_amount
     @order.order_status = 0
+    @postage = 800
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
