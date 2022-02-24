@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     #上の2行は下のresourcesより上に記述する必要がある
     resources :customers, only: [:show,:edit,:update]
     #ordersコントローラ
-    resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
     get "orders/complete" => "orders#complete", as: "complete"
+    resources :orders, only: [:new,:create,:index,:show]
     #shippingsコントローラ
     resources :shippings, only: [:index,:create,:edit,:update,:destroy]
     #itemsコントローラ

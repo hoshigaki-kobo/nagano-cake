@@ -28,31 +28,45 @@ class Public::OrdersController < ApplicationController
         @order.address = Address.find(params[:order][:shipping]).address
       else
         render :new
-        #既存のデータを使ってoriありえないですが、万が一データが足りない場合は new を render します
+        #既存のデータを使っておりありえないですが、万が一データが足りない場合は new を render します
       end
     elsif params[:order][:address_nnmber] == "2"
       #viewで定義している address_numberが"2"だったときにこの処理を実行します
       address_new = current_customer.addresses.new(address_params)
-      if address_new.save # 確定前(確認画面)で save してしまうことになりますが、私の知識の限界でした
+      if address_new.save # 確定前(確認画面)で save してしまうことになります
       else
         render :new
         #ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合はnewに戻します
       end
-    else
-      # redirect_to 'top'
     end
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @total = 0 #変数提議　合計を計算する変数
+    @postage = "800"
+    @cart_items.each do |cart_item|
+      @total += cart_item.quantity*cart_item.item.tax_included
+      @total_amount = @total + 800
+    end
+
+    # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
 
   def create
-    cart_items = current_customer.cart_items.all
-    @order = Ordrer.new
+    @cart_items = current_customer.cart_items.all
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
 
     if @order.save
-      cart_item.destroy.all
+        @cart_items = current_customer.cart_items.all
+          @cart_items.each do |cart_item|
+          @order_items = @order.order_items.new
+          @order_items.item_id = cart_item.item.id
+          @order_items.item.name = cart_item.item.name
+          @order_items.tex_excluded = cart_item.item.tax_included
+          @order_items.quantity = cart_item.quantity
+          @order_items.save
+        end
+      # @cart_items.destroy_all
       redirect_to complete_path(@order)
     end
   end
@@ -67,6 +81,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @customer = Customer.all
     @order = Order.find(params[:id]) #order特定
     @order_item = @order.order_items #特定したorserからorder_items全部取得
     @total = 0 #変数提議　合計を計算する変数

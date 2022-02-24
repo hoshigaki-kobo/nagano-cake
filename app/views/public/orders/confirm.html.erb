@@ -1,33 +1,57 @@
-  <div calss = "containar">
+ <div calss = "container">
     <div class = "row">
-      <div class = "col-xs-6">
+      <div class = "col-md-6">
         <p><strong><h4>注文情報確認</h4></strong></p>
-        <table class='table table-hover table-inverse'>
-      　<thead>
-      　  <tr>
-      　 <th>商品名</th>
-      　 <th>単価(税込）</th>
-      　 <th>数量</th>
-      　 <th>小計</th>
-           <% @cart_items.each do |cart| %>
-           </tr>
-            <td><%= cart.item.name %><%= cart.item.name %></td>
-            <td><%= (cart.item.price).to_s(:delimited) %></td>
-            <td><%= cart.quantity %>数量</td>
-            <td><%= (cart.item.price*cart.quantity).to_s(:delimited) %></td>
+          <table align="left" class='table table-borderd'>
+      　    <thead>
+      　      <tr>
+      　       <th>商品名</th>
+      　       <th>単価(税込）</th>
+      　       <th>数量</th>
+      　       <th>小計</th>
+      　      </tr>
+            </thead>
+            <tbody>
+               <% @cart_items.each do |cart_item| %>
+              <td><%= cart_item.item.name %></td>
+              <td><%= cart_item.item.tax_included %></td>
+              <td><%= cart_item.quantity %></td>
+              <td><%= (cart_item.item.tax_included*cart_item.quantity) %></td>
+              <% end %>
+            </tbody>
+           </table>
+      </div>
+      <div class = "mx-auto">
+        <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
+		    <p><strong><h4>お届け先</h4></strong><%= @order.zip_code %> <%= @order.address %> <%= @order.name %></p><br>
+      </div>
+		      <div class = "col-xs-3">
+		      <table class='table table-hover table-inverse'>
+		        <td>送料</td>
+		        <th><%= @postage %></th>
+		        </tr>
+		        <tr>
+		          <td>商品合計</td>
+		          <th>
+							  <%= @total %>
+		          </th>
+		        </tr>
+		        <tr>
+		          <td>請求金額</td>
+		          <th><%= @total_amount %></th>
+		        </tr>
+		      </table>
+
+
+
+
+		        <%= form_with model: @order, url: orders_path, local: true do |f| %>
+		        <%= f.hidden_field :@postage %>
+            <%= f.hidden_field :@total %>
+            <%= f.hidden_field :@total_amount %>
+            <%= f.submit "注文を確定する", class: "btn btn-success" %>
             <% end %>
-        </thead>
-       </table>
-      </div>
-      <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
-		  <p><strong><h4>お届け先</h4></strong><%= @order.address %> <%#= @order.address %> <%#= @order.name %></p><br>
-		  <%= form_with model: @order, url: orders_path, local: true do |f| %>
-		  <div class = "col-xs-3 ">
-		    <table class='table table-hover table-inverse'>
-		    <tr><%= f.hidden_field :postage, :value => 800 %>送料</tr><br>
-        <tr><%= f.hidden_field :xxxxxx %>商品合計</tr><br>
-        <tr><%= f.hidden_field :total_amount %>請求金額</tr>
-        </table>
-      </div>
-        <%= f.submit "注文を確定する", class: "btn btn-success" %>
-        <% end %>
+          <!--</table>-->
+          <!--</div>-->
+    </div>
+ </div>

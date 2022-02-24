@@ -1,7 +1,7 @@
 <div class ="container">
 	<h4>注文履歴一覧</h4><br>
 	<div class = "row" >
-    <table class="table-bordered">
+    <table align = "left" class = "table table-bordered">
 	    <thead>
 	     <tr>
         <th>注文日</th>
@@ -19,10 +19,9 @@
         <!--<td><%#= order.created_at.strftime('%Y/%m/%d') %></td>-->
         <td><%= order.address %></td>
         <td><% order.order_items.each do |order_item| %>
-          <%= order_item.item.name %>
-          <%= order_item.tex_excluded %>
+        <%= order_item.item.name %></td>
         <% end %>
-        <td><%= order.total_amount %></td>
+        <td><%= order.total_quantity %>円</td>
         <td><%= order.order_status %></td>
         <td><%= link_to "表示する", order_path(order) %></td>
       </tr>
