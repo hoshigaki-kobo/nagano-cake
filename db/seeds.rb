@@ -16,11 +16,5 @@ Admin.create!(
   password: "aaaaaa",
   )
 
-  Item.create!(
-  genre_id: 1,
-  name: "田中花子",
-  introduction: "こんにちは",
-  tax_included: 1650,
-  is_active: true,
-)
+
 #   Character.create(name: 'Luke', movie: movies.first)

@@ -5,7 +5,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
         <li class="navbar-nav">
-          <%= image_tag 'ヘッダーロゴ.png', size: "100x100" %>
+          <%= image_tag 'ヘッダーロゴ.png', size: "70x70" %>
         </li>
 
 
@@ -16,7 +16,7 @@
     </li>
 
     <li>
-      <%= link_to customer_path(current_customer), class: 'nav-link text-light border border-light rounded' do %>
+      <%= link_to customers_my_page_path, class: 'nav-link text-light border border-light rounded' do %>
         マイページ
       <% end %>
     </li>
