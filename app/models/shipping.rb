@@ -2,7 +2,7 @@ class Shipping < ApplicationRecord
 
   belongs_to :customer
 
-  def shipping_display
+  def full_address
     '〒' + zip_code + ' ' + address + ' ' + name
   end
 end

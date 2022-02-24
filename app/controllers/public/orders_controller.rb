@@ -38,15 +38,13 @@ class Public::OrdersController < ApplicationController
         render :new
         #ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合はnewに戻します
       end
-    else
-      # redirect_to 'top'
     end
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
     @total = 0 #変数提議　合計を計算する変数
-    @cart_items.each do |cart_item|
-    @total += cart_item.quantity*cart_item.item.tax_included
     @postage = "800"
-    @total_amount = @total + 800
+    @cart_items.each do |cart_item|
+      @total += cart_item.quantity*cart_item.item.tax_included
+      @total_amount = @total + 800
     end
 
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
@@ -55,11 +53,20 @@ class Public::OrdersController < ApplicationController
 
   def create
     @cart_items = current_customer.cart_items.all
-    @order = Order.new
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
 
     if @order.save
-      @cart_items.destroy.all
+        @cart_items = current_customer.cart_items.all
+          @cart_items.each do |cart_item|
+          @order_items = @order.order_items.new
+          @order_items.item_id = cart_item.item.id
+          @order_items.item.name = cart_item.item.name
+          @order_items.tex_excluded = cart_item.item.tax_included
+          @order_items.quantity = cart_item.quantity
+          @order_items.save
+        end
+      # @cart_items.destroy_all
       redirect_to complete_path(@order)
     end
   end
@@ -74,6 +81,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @customer = Customer.all
     @order = Order.find(params[:id]) #order特定
     @order_item = @order.order_items #特定したorserからorder_items全部取得
     @total = 0 #変数提議　合計を計算する変数

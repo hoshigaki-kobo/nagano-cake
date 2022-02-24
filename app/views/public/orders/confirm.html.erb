@@ -1,8 +1,8 @@
  <div calss = "container">
     <div class = "row">
-      <div class = "col-xs-6">
+      <div class = "col-md-6">
         <p><strong><h4>注文情報確認</h4></strong></p>
-          <table class='table table-hover table-inverse'>
+          <table align="left" class='table table-borderd'>
       　    <thead>
       　      <tr>
       　       <th>商品名</th>
@@ -15,23 +15,25 @@
                <% @cart_items.each do |cart_item| %>
               <td><%= cart_item.item.name %></td>
               <td><%= cart_item.item.tax_included %></td>
-              <td><%= cart_item.quantity %>数量</td>
+              <td><%= cart_item.quantity %></td>
               <td><%= (cart_item.item.tax_included*cart_item.quantity) %></td>
               <% end %>
             </tbody>
            </table>
       </div>
+      <div class = "mx-auto">
         <p><strong><h4>支払方法</h4></strong><%= @order.payment_method %></p><br>
-		    <p><strong><h4>お届け先</h4></strong><%= @order.address %> <%#= @order.address %> <%#= @order.name %></p><br>
+		    <p><strong><h4>お届け先</h4></strong><%= @order.zip_code %> <%= @order.address %> <%= @order.name %></p><br>
+      </div>
 		      <div class = "col-xs-3">
 		      <table class='table table-hover table-inverse'>
 		        <td>送料</td>
-		        <th><% @postage %></th>
+		        <th><%= @postage %></th>
 		        </tr>
 		        <tr>
 		          <td>商品合計</td>
 		          <th>
-							  <% @total %>
+							  <%= @total %>
 		          </th>
 		        </tr>
 		        <tr>
