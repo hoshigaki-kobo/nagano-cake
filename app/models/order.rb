@@ -14,5 +14,11 @@ class Order < ApplicationRecord
     @order = Order.page(params[:page])
   end
 
-
+  def total_quantity
+    sum = 0
+    self.order_items.each do |order_item|
+      sum = sum + order_item.quantity
+    end
+    sum
+  end
 end

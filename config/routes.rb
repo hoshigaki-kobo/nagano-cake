@@ -21,9 +21,9 @@ Rails.application.routes.draw do
     get 'customers/my_page' => 'customers#show'
     resources :customers, only: [:update]
     #ordersコントローラ
-    resources :orders, only: [:new,:create,:index,:show]
     post "orders/comfirm" => "orders#confirm", as: "confirm"
     get "orders/complete" => "orders#complete", as: "complete"
+    resources :orders, only: [:new,:create,:index,:show]
     #shippingsコントローラ
     resources :shippings, only: [:index,:create,:edit,:update,:destroy]
     #itemsコントローラ
