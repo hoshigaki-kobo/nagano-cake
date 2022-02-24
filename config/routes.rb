@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:new,:create,:index,:show]
     #shippingsコントローラ
     resources :shippings, only: [:index,:create,:edit,:update,:destroy]
+    #genresコントローラ
+    resources :genres, only: [:show]
     #itemsコントローラ
     resources :items, only: [:index,:show]
     #cart_itemsコントローラ
