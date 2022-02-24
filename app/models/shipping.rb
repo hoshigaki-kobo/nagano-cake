@@ -8,7 +8,7 @@ class Shipping < ApplicationRecord
     validates :name
   end
 
-  def shipping_display
+  def full_address
     '〒' + zip_code + ' ' + address + ' ' + name
   end
 end

@@ -3,5 +3,6 @@ class Admin::HomesController < ApplicationController
     @order = Order.all
     @order = Order.page(params[:page])
 
+
   end
 end
