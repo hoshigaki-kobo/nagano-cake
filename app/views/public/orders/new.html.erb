@@ -6,11 +6,12 @@
         <!--下記ハリボテならば?どうする-->
     <div class = "row" >
       <div class = "col-xs-6">
+              <strong><h5>支払い方法</h5></strong>
             <%= form_with model: @order, url: confirm_path, method: :post, local:true do |f| %>
-              <%= f.radio_button :payment_method, :credit_card, checked: true %>
-              <%= f.label :payment_method, "クレジットカード" %>
-              <%= f.radio_button :payment_method, "transfer" %>
-              <%= f.label :payment_method, "銀行振込" %>
+              <%= f.radio_button :payment, "credit_card", checked: true %>
+              <%= f.label :payment, "クレジットカード" %>
+              <%= f.radio_button :payment, "transfer" %>
+              <%= f.label :payment, "銀行振込" %>
                <strong><h5>お届け先</h5></strong>
               <div class="form-group">
               <%= f.radio_button :address_number, 0, checked: true %>

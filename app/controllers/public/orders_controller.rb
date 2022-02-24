@@ -21,11 +21,11 @@ class Public::OrdersController < ApplicationController
       @order.name = current_customer.last_name
     elsif params[:order][:address_number] == "1"
       #view で定義しているaddress_number が"1"だったときにこの処理を実行します
-      if Address.exists?(name: params[:order][:shipping])
+      if Shipping.exists?(id: params[:order][:shipping_id])
         #registered は viweで定義しています
-        @order.zip_code = @address.find(params[:zip_code][:shipping]).zip_code
-        @order.name = Address.find(params[:order][:shipping]).name
-        @order.address = Address.find(params[:order][:shipping]).address
+        @order.zip_code = Shipping.find(params[:order][:shipping_id]).zip_code
+        @order.name = Shipping.find(params[:order][:shipping_id]).name
+        @order.address = Shipping.find(params[:order][:shipping_id]).address
       else
         render :new
         #既存のデータを使っておりありえないですが、万が一データが足りない場合は new を render します
@@ -75,6 +75,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    # binding.pry
     @orders = Order.all
     # @order = @item.order.new(order_params) エラーになるのでコメントアウト
     #@shipping = Shipping.address  エラーになるので
@@ -90,7 +91,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :name, :address, :postage, :zip_code, :item_id, :total_amount, :quantity)
+    params.require(:order).permit(:payment, :name, :address, :postage, :zip_code, :item_id, :total_amount, :quantity)
   end
 
   def shipping_params
