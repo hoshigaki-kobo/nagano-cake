@@ -13,7 +13,8 @@ class Public::ShippingsController < ApplicationController
       flash[:notice] = "新しい配送先を登録しました"
       redirect_to shippings_path
     else
-      @shippings = Shipping.all
+      @customer = current_customer
+      @shippings = @customer.shippings.all
       render :index
     end
   end
