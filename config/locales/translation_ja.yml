@@ -1,0 +1,109 @@
+ja:
+  activerecord:
+    models:
+      active_storage/attachment: アクティブストレージ/アタッチメント  #g
+      active_storage/blob: アクティブストレージ/ブロブ  #g
+      active_storage/variant_record: アクティブなストレージ/バリアントレコード  #g
+      admin: 管理者  #g
+      cart_item: カートアイテム  #g
+      customer: お客様  #g
+      genre: ジャンル  #g
+      item: アイテム  #g
+      order: 注文  #g
+      order_item: 注文アイテム  #g
+      shipping: 運送  #g
+
+    attributes:
+      active_storage/attachment:
+        blob: :activerecord.models.blob  #g
+        name: 名前  #g
+        record: :activerecord.models.record  #g
+        record_type: レコードタイプ  #g
+
+      active_storage/blob:
+        attachments: 添付ファイル  #g
+        byte_size: バイトサイズ  #g
+        checksum: チェックサム  #g
+        content_type: コンテンツタイプ  #g
+        filename: ファイル名  #g
+        key: 鍵  #g
+        metadata: メタデータ  #g
+        preview_image_attachment: :activerecord.models.preview_image_attachment  #g
+        preview_image_blob: :activerecord.models.preview_image_blob  #g
+        service_name: サービス名  #g
+        variant_records: バリアントレコード  #g
+
+      active_storage/variant_record:
+        blob: :activerecord.models.blob  #g
+        image_attachment: :activerecord.models.image_attachment  #g
+        image_blob: :activerecord.models.image_blob  #g
+        variation_digest: バリエーションダイジェスト  #g
+
+      admin:
+        email: Eメール  #g
+        encrypted_password: 暗号化されたパスワード  #g
+        remember_created_at: で作成されたことを忘れないでください  #g
+        reset_password_sent_at: で送信されたパスワードをリセット  #g
+        reset_password_token: パスワードトークンをリセット  #g
+
+      cart_item:
+        customer: :activerecord.models.customer  #g
+        item: :activerecord.models.item  #g
+        quantity: 量  #g
+
+      customer:
+        address: 住所  #g
+        cart_items: カートアイテム  #g
+        email: Eメール  #g
+        encrypted_password: 暗号化されたパスワード  #g
+        first_name: ファーストネーム  #g
+        first_name_kana: 名かな  #g
+        is_deleted: 削除されます  #g
+        last_name: 苗字  #g
+        last_name_kana: 姓かな  #g
+        orders: 注文  #g
+        remember_created_at: で作成されたことを忘れないでください  #g
+        reset_password_sent_at: で送信されたパスワードをリセット  #g
+        reset_password_token: パスワードトークンをリセット  #g
+        shippings: 送料  #g
+        tel: 電話  #g
+        zip_code: 郵便番号  #g
+
+      genre:
+        items: アイテム  #g
+        name: 名前  #g
+
+      item:
+        cart_items: カートアイテム  #g
+        genre: :activerecord.models.genre  #g
+        introduction: 序章  #g
+        is_active: アクティブです  #g
+        item_image_attachment: :activerecord.models.item_image_attachment  #g
+        item_image_blob: :activerecord.models.item_image_blob  #g
+        name: 名前  #g
+        order_items: アイテムを注文する  #g
+        tax_included: 税込み  #g
+
+      order:
+        address: 住所  #g
+        customer: :activerecord.models.customer  #g
+        name: 名前  #g
+        order_items: アイテムを注文する  #g
+        order_status: 注文の状況  #g
+        payment: 支払い  #g
+        postage: 送料  #g
+        total_amount: 合計金額  #g
+        zip_code: 郵便番号  #g
+
+      order_item:
+        item: :activerecord.models.item  #g
+        item_status: アイテムのステータス  #g
+        order: :activerecord.models.order  #g
+        quantity: 量  #g
+        tex_excluded: テックス除外  #g
+
+      shipping:
+        address: 住所  #g
+        customer: :activerecord.models.customer  #g
+        name: 名前  #g
+        zip_code: 郵便番号  #g
