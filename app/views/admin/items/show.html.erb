@@ -3,49 +3,49 @@
     <div class = "col-4 text-center">
       <h2>商品詳細</h2>
     </div>
-    <div class = "row">
-      <div class = "col-md-4">
-        <%= image_tag @item.get_item_image("300x300") %>
-      </div>
-      <dev class = "col-md-8 float-right">
-        <table class = "table table-borderless">
-          <tr>
-            <th>商品名</th>
-            <td><%= @item.name %></td>
-          </tr>
-          <tr>
-            <th>商品説明</th>
-            <td><%= @item.introduction %></td>
-          </tr>
-           <tr>
-            <th>ジャンル</th>
-            <td><%= @item.genre.name %></td>
-          </tr>
-           <tr>
-            <th>
-              税込価格<br />
-              (税抜価格)
-            </th>
-            <td>
-              <%= @item.tax_included %>
-              (<%= @item.with_tax_price %>)円
-            </td>
-          </tr>
-           <tr>
-            <th>販売ステータス</th>
-            <% if @item.is_active == true %>
-                <td class = "text-success">
-                  販売中
-                </td>
-              <% else %>
-                <td class = "text-secondary">
-                  販売停止中
-                </td>
-              <% end %>
-          </tr>
-        </table>
-      </dev>
+  </div>
+  <div class = "row justify-content-around">
+    <div class = "col-4">
+      <%= image_tag @item.get_item_image("300x300"), class: "img-fulied" %>
     </div>
+    <dev class = "col-8">
+      <table class = "table table-borderless">
+        <tr>
+          <th>商品名</th>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.introduction %></td>
+        </tr>
+         <tr>
+          <th>ジャンル</th>
+          <td><%= @item.genre.name %></td>
+        </tr>
+         <tr>
+          <th>
+            税込価格<br />
+            (税抜価格)
+          </th>
+          <td>
+            <%= @item.tax_included %>
+            (<%= @item.with_tax_price %>)円
+          </td>
+        </tr>
+        <tr>
+          <th>販売ステータス</th>
+            <% if @item.is_active == true %>
+              <td class = "text-success">
+                販売中
+              </td>
+            <% else %>
+              <td class = "text-secondary">
+                販売停止中
+              </td>
+            <% end %>
+        </tr>
+      </table>
+    </dev>
   </div>
   <div class = "row">
     <div class ="col-2 mx-auto">
