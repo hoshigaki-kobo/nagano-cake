@@ -13,16 +13,24 @@
         </div>
       </div>
 
-      <div class="row">
-        <% @items.first(4).each do |item| %>
-          <div class="captopn">
-            <%= link_to customer_item_path(item.id) do %> <!-- 画像クリックで商品詳細へ遷移 -->
-              <%= attachment_image_tag item, :item_image, allback: "no_image.png", size:'300x200' %>
-            <% end %>
-            <p><%= item.name %></p>
-            <p>￥<%= (item.tax_included) %>></p>
+      <div class = "row">
+    <% @items.first(4).each do |item| %>
+      <div class = "col-3">
+        <div class = "card w-20 shadow-lg">
+          <%= link_to item_path(item) do %>
+            <%= image_tag item.get_item_image("300x200"),size: "300x200", class: "card-img-top" %>
+          <% end %>
+          <div class = "card-body">
+            <div class = "row">
+              <%= item.name %>
+            </div>
+            <div class = "row">
+              <%= item.with_tax_price %>円
+            </div>
           </div>
-        <% end %>
+        </div>
       </div>
+    <% end %>
+  </div>
 
 </div>

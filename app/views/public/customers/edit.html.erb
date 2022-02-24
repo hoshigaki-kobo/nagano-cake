@@ -1,9 +1,18 @@
 <div class="container">
+  <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
   <div class="row">
     <h2>会員情報編集</h2>
   </div>
 
-  <%= form_with model: @customer do |f| %>
+  <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
   <div class="row">
     <table>
       <tr>

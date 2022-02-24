@@ -3,10 +3,6 @@ Rails.application.routes.draw do
      get 'customers/edit' => 'customers#edit', as: 'customer_edit'
    end
 
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
@@ -19,7 +15,7 @@ Rails.application.routes.draw do
     patch "customers/withdraw" => "customers#withdraw", as: "withdraw"
     #上の2行は下のresourcesより上に記述する必要がある
     get 'customers/my_page' => 'customers#show'
-    resources :customers, only: [:update]
+    patch 'customers' => 'customers#update'
     #ordersコントローラ
     post "orders/comfirm" => "orders#confirm", as: "confirm"
     get "orders/complete" => "orders#complete", as: "complete"
@@ -47,4 +43,8 @@ Rails.application.routes.draw do
       resources :order_items, only: [:update]
     end
   end
+    devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 end
