@@ -1,13 +1,11 @@
 <div class = "container">
   <div class ="row my-5">
     <div class = "col-4">
-      <h3><%= "#{@genre.name} 一覧" %></h3>
+      <h3><%= "#{@genre.name} 一覧" %><small><%= "(全#{@items.count}件)" %></small></h3>
     </div>
   </div>
   <div class = "row">
-
     <%= render 'sidebar', genres:@genres %> <!--サイドバー col-2とります-->
-
     <div class="col-10">
       <div class="row">
         <% @items.each do |item| %>
@@ -30,5 +28,5 @@
       </div>
     </div>
   </div>
-  <%= paginate @items %>
+  <!--<= paginate @items %>-->
 </div>
