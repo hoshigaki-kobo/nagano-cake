@@ -13,19 +13,24 @@
        </tr>
       </thead>
       <tbody>
-        <% @orders.each do |order| %>
+        <% @orders.reverse.each do |order| %>
         <tr>
-        <td><%= l order.created_at,format: :short %></td>
-        <!--<td><%#= order.created_at.strftime('%Y/%m/%d') %></td>-->
-        <td><%= order.address %></td>
-        <td><% order.order_items.each do |order_item| %>
-        <%= order_item.item.name %></td>
+            <td><%= l order.created_at,format: :short %></td>
+            <td>
+                〒<%= order.zip_code %><br>
+                <%= order.address %><br>
+                <%= order.name %>
+            </td>
+            <td>
+            <% order.order_items.each do |order_item| %>
+                <%= order_item.item.name %><br>
+            <% end %>
+           </td>
+            <td><%= order.total_amount %>円</td>
+            <td><%= order.order_status %></td>
+            <td><%= link_to "表示する", order_path(order) %></td>
+        </tr>
         <% end %>
-        <td><%= order.total_quantity %>円</td>
-        <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", order_path(order) %></td>
-      </tr>
-    <% end %>
-    </body>
+      </body>
 	</table>
 </div>

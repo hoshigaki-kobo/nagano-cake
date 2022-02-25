@@ -1,7 +1,7 @@
 <div class="container">
 	<h4>注文履歴詳細</h4><br>
 	<div class="row">
-		<div class="col-xs-6">
+		<div class="col-md-8">
 			<h4>注文情報</h4>
 			<table align="left" class="table table-bordered">
 				<tr>
@@ -14,7 +14,7 @@
 				</tr>
 				<tr>
 					<td>支払方法</td>
-					<td><%= @order.payment %></td>
+					<td><%= @order.payment_i18n %></td>
 				</tr>
 				<tr>
 					<td>ステータス</td>
@@ -22,7 +22,7 @@
 				</tr>
 			</table>
 
-			<p>注文内容</p>
+			<h4>注文内容</h4>
 				<table class="table table-bordered">
 					<tr>
 						<th>商品</th>
@@ -42,9 +42,8 @@
 					<% end %>
 				</table>
 			</div>
-			<div class="row","text-right">
-					<div class="col-xs-3">
-				  <br><p>請求情報</p>
+		<div class="col-md-3">
+				  <h4>請求情報</h4>
 				  <table class="table table-bordered">
 					<tr>
 						<td>商品合計</td>

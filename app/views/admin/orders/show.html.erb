@@ -5,17 +5,20 @@
       <!-- 購入詳細情報 -->
       <table>
        <tr>
-        <th class= "order-show">購入者</th>
+        <th>購入者</th>
         <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
           <!--todo購入者のlink_toを作成する-->
       </tr>
       <tr>
-        <th class= "order-show">配送先</th>
-        <td>〒<%= @order.zip_code %> <%= @order.address %><br><%= @order.name %></td>
+        <th>配送先</th>
+        <td>〒<%= @order.zip_code %><br>
+              <%= @order.address %><br>
+              <%= @order.name %>
+        </td>
       </tr>
       <tr>
-        <th class= "order-show">支払い方法</th>
-        <td><%= @order.payment_method %></td>
+        <th>支払い方法</th>
+        <td><%= @order.payment_i18n %></td>
       </tr>
       <tr>
 
@@ -48,10 +51,11 @@
           <td><%= order_item.quantity %></td>
           <td><%= ((order_item.tex_excluded)*(order_item.quantity)) %> </td>
         <!-- 製作ステータス変更　更新を押すと更新-->
-          <%= form_for order_item,url: admin_order_order_item_path(order_item) do |f| %>
-          <td><%= f.select :item_status,["着手不可","製作待ち","製作中","製作完了"] %></td><!--ステータス選択 -->
-          <td><%= f.submit "更新" ,class:"btn btn-primary btn-xs" %></td>
+          <td><%= form_for order_item,url: admin_order_order_item_path(@order,order_item) do |f| %>
+              <%= f.select :item_status,["着手不可","製作待ち","製作中","製作完了"] %><!--ステータス選択 -->
+              <%= f.submit "更新" ,class:"btn btn-primary btn-xs" %>
           <% end %>
+          </td>
         </tr>
           <% end %>
       </table>
@@ -60,7 +64,7 @@
 
     <div class="total">
      <h4>商品合計     <%= @total %>円</h4>
-     <h4>送料　</H4>　　   <h4>800円</h4>
+     <h4>送料 800円</h4>
      <h4>請求金額合計　<%= @total + 800 %>円</h4>
     </div>
   </div>
