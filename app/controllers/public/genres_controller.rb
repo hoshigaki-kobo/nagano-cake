@@ -3,10 +3,8 @@ class Public::GenresController < ApplicationController
   def show
     @genres = Genre.all
     @genre = Genre.find(params[:id])
-    # しょーたさんここから下書き換えました
-    @items = @genre.items.where(is_active: true)
-    @items_page = @items.page(params[:page])
-
+    @all_items_count = @genre.items.where(is_active: true).count
+    @items_page = Item.where(is_active: true, genre_id: params[:id]).page(params[:page]).per(9)
   end
 
 end
