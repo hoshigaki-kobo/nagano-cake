@@ -1,10 +1,13 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items_all = Item.where(is_active: true).page(params[:page])
+    @items = Item.where(is_active: true).page(params[:page])
+    @genres = Genre.all
+
   end
 
   def show
+    @genres = Genre.all
     # 『カートに入れる』form_with用インスタンスの定義
     @item = Item.find(params[:id])
      if customer_signed_in?
