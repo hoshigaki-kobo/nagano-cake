@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  #before_action :authenticate_customer!最後にこちらを入れる
+  before_action :authenticate_customer!
   # before_action :request_post?, only: [:confirm]
   # before_action :order_new?, only: [:new]
 
@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
       # @address = Address.find(params[:order][:address_id])
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
-      @order.name = current_customer.last_name
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_number] == "1"
       #view で定義しているaddress_number が"1"だったときにこの処理を実行します
       if Shipping.exists?(id: params[:order][:shipping_id])
@@ -32,47 +32,48 @@ class Public::OrdersController < ApplicationController
         render :new
         #既存のデータを使っておりありえないですが、万が一データが足りない場合は new を render します
       end
-    elsif params[:order][:address_nnmber] == "2"
+    elsif params[:order][:address_number] == "2"
       #viewで定義している address_numberが"2"だったときにこの処理を実行します
-      address_new = current_customer.addresses.new(address_params)
-      if address_new.save # 確定前(確認画面)で save してしまうことになります
+      shipping_new = current_customer.shippings.new(shipping_params)
+      if shipping_new.save # 確定前(確認画面)で save してしまうことになります
       else
         render :new
         #ここに渡ってくるデータはユーザーで新規追加してもらうので、入力不足の場合はnewに戻します
       end
     end
 
+    @postage = 800
     @cart_items = current_customer.cart_items.all # カートアイテムの情報をユーザーに確認してもらうために使用します
     @total = 0 #変数提議　合計を計算する変数
     @cart_items.each do |cart_item|
-      @total += cart_item.quantity*cart_item.item.tax_included
-      @total_amount = @total + 800
+      @total += cart_item.item.with_tax_price*cart_item.quantity
     end
+    @total_amount = @total + @postage
+
     @order.total_amount = @total_amount
     @order.order_status = 0
-    @postage = 800
     # @total = @cart_items.inject(0) { |sum, item| sum + item.total_amount }
     # 合計金額を出す処理です sum_price はモデルで定義したメソッドです
   end
 
   def create
-    @cart_items = current_customer.cart_items.all
+    # @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.postage = 800
 
     if @order.save
         @cart_items = current_customer.cart_items.all
-          @cart_items.each do |cart_item|
+        @cart_items.each do |cart_item|
           @order_items = @order.order_items.new
           @order_items.item_id = cart_item.item.id
           @order_items.item.name = cart_item.item.name
-          @order_items.tex_excluded = cart_item.item.tax_included
+          @order_items.tex_excluded = cart_item.item.with_tax_price
           @order_items.quantity = cart_item.quantity
           @order_items.save
         end
        @cart_items.destroy_all
-      redirect_to complete_path(@order)
+      redirect_to complete_path
     end
   end
 
@@ -81,13 +82,13 @@ class Public::OrdersController < ApplicationController
 
   def index
     # binding.pry
-    @orders = Order.all
+    @orders = current_customer.orders
     # @order = @item.order.new(order_params) エラーになるのでコメントアウト
     #@shipping = Shipping.address  エラーになるので
   end
 
   def show
-    @customer = Customer.all
+    # @customer = Customer.all
     @order = Order.find(params[:id]) #order特定
     @order_item = @order.order_items #特定したorserからorder_items全部取得
     @total = 0 #変数提議　合計を計算する変数
