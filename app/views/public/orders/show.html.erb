@@ -36,9 +36,10 @@
 						<td><%= order_item.tex_excluded %></td>
 						<td><%= order_item.quantity %></td>
 						<td><%= (order_item.tex_excluded*order_item.quantity) %>
-							<% @total += (order_item.tex_excluded*order_item.quantity) %>
 						</td>
 					</tr>
+					<% @total += (order_item.tex_excluded*order_item.quantity) %>
+
 					<% end %>
 				</table>
 			</div>

@@ -18,8 +18,8 @@
               <%= f.label :address_number_0, "ご自身の住所" %>
               <%= current_customer.address %><br>
               <%= f.radio_button :address_number, 1 %>
-              <%= f.label :address_namber_1, "登録済住所から選択" %>
-              <%= f.select :shipping_id, options_from_collection_for_select(Shipping.all, :id, :full_address) %><br>
+              <%= f.label :address_number_1, "登録済住所から選択" %>
+              <%= f.select :shipping_id, options_from_collection_for_select(current_customer.shippings, :id, :full_address) %><br>
               <%#= f.select :shipping_id, options_from_collection_for_select(Shipping.all, :id, :shipping_display) %>
               <%= f.radio_button :address_number, 2 %>
               <%= f.label :address_number_2, "新しいお届け先" %><br>
