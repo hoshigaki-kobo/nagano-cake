@@ -7,7 +7,7 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-    customers_my_page_path
+    root_path
   end
 
   # 退会しているかを判断するメソッド
