@@ -9,20 +9,21 @@
   </thead>
   <tbody>
     <% shippings.each do |shipping| %>
-    <tr>
-      <tb><%= shipping.zip_code %></tb>
-      <tb><%= shipping.address %></tb>
-      <tb><%= shipping.name %></tb>
-      <tb>
-        <%= link_to edit_shipping_path(shipping) do %>
-          <button class ="btn btn-success">編集</button>
-        <% end %>
-      </tb>
-      <tb>
-        <%= link_to shipping_path(shipping), method: :delete, data: { confirm: '本当に消しますか？' } %>
-          <button class = "btn btn-danger">削除</button>
-        <% end %>
-      </tb>
-    </tr>
+      <tr>
+        <td><%= shipping.zip_code %></td>
+        <td><%= shipping.address %></td>
+        <td><%= shipping.name %></td>
+        <td>
+          <%= link_to edit_shipping_path(shipping.id),data: {"turbolinks" => false} do %>
+            <button class ="btn btn-success">編集</button>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to shipping_path(shipping.id), data: {"turbolinks" => false}, method: :delete, data: { confirm: '本当に消しますか？' } do %>
+            <button class = "btn btn-danger">削除</button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

@@ -1,14 +1,17 @@
 <div class="container">
-  <div class="row">
-    <h2>配送先登録・一覧</h2>
+  <div class="row my-5">
+    <div class = "col-4 text-center">
+      <h3>配送先登録・一覧</h3>
+    </div>
+    <%= render "public/shippings/error", obj: @shipping %>
   </div>
   <div class="row">
     <table class="table table-borderless table-sm">
-      <%= form_with model: @shipping, local: true do |f| %>
+      <%= form_with model: @shipping, url: shippings_path, local: true do |f| %>
       <tr>
         <th><%= f.label :zip_code,"郵便番号(ハイフンなし)" %></th>
         <td class = "col-7">
-          <%= f.text_field :zip_code, class: "form-control", placeholder: "0000000" %>
+          <%= f.text_field :zip_code, class: "form-control", placeholder: "1231234" %>
         </td>
       </tr>
       <tr>
@@ -20,7 +23,7 @@
       <tr>
         <th><%= f.label :name, "宛名" %></th>
         <td class = "col-7">
-          <%= f.text_field :name, class: "form-control", placeholder: "スイーツ 好子" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "干柿 令和" %>
         </td>
         <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
       </tr>

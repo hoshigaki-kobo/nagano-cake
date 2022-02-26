@@ -3,6 +3,7 @@
     <div class="col-4 text-center">
       <h2>商品編集</h2>
     </div>
+    <%= render "admin/items/error", obj: @item %>
   </div>
   <div class="row justify-content-center">
     <%= form_with model: @item, url: admin_item_path,local: true, method: :patch do |f| %>

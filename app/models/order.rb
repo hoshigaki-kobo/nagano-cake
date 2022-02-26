@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_items, dependent: :destroy
-  
-  enum payment_method: { credit_card: 0, transfer: 1 }
+
+  enum payment: { credit_card: 0, transfer: 1 }
   enum order_status: {
     入金待ち: 0,
     入金確認: 1,
@@ -10,22 +10,15 @@ class Order < ApplicationRecord
     発送準備中: 3,
     発送済み: 4,
   }
+  def top
+    @order = Order.page(params[:page])
+  end
 
-
-
-
-  def @shipping.address
-    if select.address == "ご自身の住所"
-      puts = Customer.zip_code
-      puts = Customer.addresss
-      puts = Customer.name
-    elsif select.address == "登録住所から選択"
-      puts = @address
-    elsif select.address == "新しいお届け先"
-      puts = @address.zip_code,
-      puts = @address.address
-      puts = @address.name
+  def total_quantity
+    sum = 0
+    self.order_items.each do |order_item|
+      sum = sum + order_item.quantity
     end
+    sum
   end
 end
-

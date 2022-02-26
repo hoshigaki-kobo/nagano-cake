@@ -1,0 +1,81 @@
+<div class="container">
+  <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <div class="row">
+    <h2>会員情報編集</h2>
+  </div>
+
+  <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
+  <div class="row">
+    <table>
+      <tr>
+        <th>名前</th>
+        <td>
+        　<span>(姓) </span>
+        </td>
+        <td>
+        　<%= f.text_field :first_name %>
+          <span>　(名)　</span>
+          <%= f.text_field :last_name %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>フリガナ</th>
+        <td>
+          <span>(セイ) </span>
+        </td>
+        <td>
+          <%= f.text_field :first_name_kana %>
+          <span>　(メイ) </span>
+          <%= f.text_field :last_name_kana %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>メールアドレス</th>
+        <td></td>
+        <td><%= f.email_field :email %><td>
+      </tr>
+
+      <tr>
+        <th>郵便番号(ハイフンなし)</th>
+        <td></td>
+        <td><%= f.text_field :zip_code %></td>
+      </tr>
+
+      <tr>
+        <th>住所</th>
+        <td></td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+
+      <tr>
+        <th>電話番号(ハイフンなし)</th>
+        <td></td>
+        <td><%= f.phone_field :tel %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <%= f.submit "編集内容を保存", class: 'btn btn-info' %>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+  </div>
+
+  <% end %>
+
+
+</div>

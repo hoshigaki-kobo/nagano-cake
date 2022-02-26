@@ -1,6 +1,18 @@
 ja:
-   enums:
-     order:
-       payment_method:
-          credit_card: "クレジットカード"
-          transfer: "銀行振込"
+  enums:
+    order:
+      payment:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d"
+  activerecord:
+    attributes:
+      items:
+        name: 商品名
+        introduction: 商品説明
+        item_image: 商品画像
+        tax_included: 税抜き価格
+
